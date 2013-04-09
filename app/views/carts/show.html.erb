@@ -1,0 +1,20 @@
+<h1>Shopping cart</h1>
+<% if @products_with_counts %>
+<%= form_for(@order) do |f| %>
+
+	<% @products_with_counts.each do |product_with_count| %>
+		<label>
+			<%= product_with_count.first.name %>
+		</label>
+		<label>quantity: <%= number_field_tag "quantity_#{product_with_count.first.id}",
+			product_with_count.last %></label>
+		<br>
+	<% end %>
+
+	<%= f.submit "Place order" %>
+
+<% end %>
+
+<% else %>
+<p>no items in cart</p>
+<% end %>
